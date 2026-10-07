@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* Layout: one centered column over a slow "lava leopard" background: burgundy glows and rosette spots that drift and
-   change shape. Content sits on translucent glass panels; project screenshots get neutral dark frames so their own
+/* Layout: one centered column over a slow "lava leopard" background: burgundy glows, flowing ribbons and tapered brush
+   marks that drift and change shape. Content sits on translucent glass panels; project screenshots get neutral dark frames so their own
    colors stay true. Single dark look on purpose. */
 :root {
   --wine-0: #1A0509; --wine-1: #2B0A12; --wine-2: #4A0F1F; --burgundy: #7A1630; --ruby: #9C2440;
@@ -41,18 +41,16 @@ img { max-width: 100%; height: auto; }
 /* big soft lava glows */
 .lava i.glow { filter: blur(48px); opacity: .75;
   background: radial-gradient(closest-side, var(--c1) 0%, var(--c1) 35%, transparent 100%); }
-/* leopard rosettes: warm center, broken mocha ring, soft edge */
-.lava i.spot { filter: blur(4px); opacity: .8;
-  background:
-    radial-gradient(closest-side, rgba(156, 36, 64, .55) 0 46%, rgba(46, 26, 18, .95) 50% 68%, transparent 74%),
-    conic-gradient(from var(--r, 0deg), transparent 0 12%, rgba(46, 26, 18, .0) 12% 20%, transparent 20%); }
-.lava i.spot::after { content: ""; position: absolute; inset: 18%; border-radius: inherit;
-  background: radial-gradient(closest-side, rgba(107, 70, 54, .45), transparent 70%); }
-.lava i.dot { filter: blur(2px); opacity: .7; background: radial-gradient(closest-side, rgba(46, 26, 18, .9) 0 55%, transparent 72%); }
+/* long flowing ribbons of wine and mocha, like paint pulled across the page */
+.lava i.ribbon { width: var(--w); height: var(--h); filter: blur(22px); opacity: .7; mix-blend-mode: screen;
+  background: linear-gradient(90deg, transparent 0%, var(--c1) 30%, var(--c2) 62%, transparent 100%); }
+/* brush marks: tapered open crescents, an abstract nod to leopard markings (never closed rings) */
+.lava i.mark { height: calc(var(--s) * var(--k, .5)); background: none; opacity: .85; filter: blur(1.5px);
+  border: 0 solid transparent; border-top: var(--t) solid var(--c1, rgba(46, 26, 18, .9)); border-radius: 50%; }
 @keyframes drift {
-  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
-  50%  { transform: translate(var(--mx), calc(var(--my) * -0.6)) rotate(18deg) scale(1.08); }
-  100% { transform: translate(calc(var(--mx) * -0.5), var(--my)) rotate(-12deg) scale(.94); }
+  0%   { transform: translate(0, 0) rotate(var(--r, 0deg)) scale(1); }
+  50%  { transform: translate(var(--mx), calc(var(--my) * -0.6)) rotate(calc(var(--r, 0deg) + 14deg)) scale(1.08); }
+  100% { transform: translate(calc(var(--mx) * -0.5), var(--my)) rotate(calc(var(--r, 0deg) - 10deg)) scale(.94); }
 }
 @keyframes morph {
   0%   { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
@@ -62,7 +60,7 @@ img { max-width: 100%; height: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .lava i { animation: none; }
+  .lava i { animation: none; transform: rotate(var(--r, 0deg)); }
 }
 .page { position: relative; z-index: 1; }
 
@@ -162,22 +160,15 @@ footer.end { padding-block: 32px 48px; color: var(--cream-2); font-size: 14px; p
 <i class="glow" style="--x:55%;--y:35%;--s:55vmax;--d:40s;--mx:-8vw;--my:6vh;--c1:#4A0F1F"></i>
 <i class="glow" style="--x:-15%;--y:60%;--s:50vmax;--d:46s;--mx:7vw;--my:-5vh;--c1:#6B4636"></i>
 <i class="glow" style="--x:70%;--y:-20%;--s:40vmax;--d:38s;--mx:-6vw;--my:8vh;--c1:#9C2440"></i>
-<i class="spot" style="--x:8%;--y:14%;--s:202px;--d:26s;--mx:30px;--my:40px;--r:10deg;--delay:-0s"></i>
-<i class="spot" style="--x:78%;--y:10%;--s:256px;--d:31s;--mx:-40px;--my:30px;--r:80deg;--delay:-3s"></i>
-<i class="spot" style="--x:22%;--y:52%;--s:162px;--d:23s;--mx:50px;--my:-30px;--r:140deg;--delay:-6s"></i>
-<i class="spot" style="--x:64%;--y:46%;--s:229px;--d:35s;--mx:-30px;--my:-40px;--r:200deg;--delay:-9s"></i>
-<i class="spot" style="--x:40%;--y:78%;--s:189px;--d:29s;--mx:40px;--my:30px;--r:260deg;--delay:-12s"></i>
-<i class="spot" style="--x:86%;--y:74%;--s:148px;--d:24s;--mx:-35px;--my:25px;--r:320deg;--delay:-15s"></i>
-<i class="spot" style="--x:4%;--y:86%;--s:216px;--d:33s;--mx:30px;--my:-35px;--r:40deg;--delay:-18s"></i>
-<i class="spot" style="--x:48%;--y:22%;--s:135px;--d:21s;--mx:-25px;--my:35px;--r:110deg;--delay:-21s"></i>
-<i class="spot" style="--x:30%;--y:6%;--s:121px;--d:27s;--mx:35px;--my:20px;--r:170deg;--delay:-24s"></i>
-<i class="spot" style="--x:92%;--y:40%;--s:175px;--d:30s;--mx:-30px;--my:-25px;--r:230deg;--delay:-27s"></i>
-<i class="dot" style="--x:16%;--y:34%;--s:48px;--d:19s;--mx:20px;--my:15px;--delay:-0s"></i>
-<i class="dot" style="--x:58%;--y:66%;--s:59px;--d:22s;--mx:-18px;--my:20px;--delay:-2s"></i>
-<i class="dot" style="--x:72%;--y:28%;--s:40px;--d:17s;--mx:15px;--my:-20px;--delay:-4s"></i>
-<i class="dot" style="--x:36%;--y:92%;--s:54px;--d:24s;--mx:-20px;--my:-15px;--delay:-6s"></i>
-<i class="dot" style="--x:90%;--y:58%;--s:43px;--d:20s;--mx:18px;--my:18px;--delay:-8s"></i>
-<i class="dot" style="--x:12%;--y:70%;--s:37px;--d:18s;--mx:-15px;--my:20px;--delay:-10s"></i>
+<i class="ribbon" style="--x:-20%;--y:18%;--w:95vw;--h:16vmax;--r:-14deg;--d:44s;--mx:5vw;--my:4vh;--c1:#9C2440;--c2:#6B4636"></i>
+<i class="ribbon" style="--x:30%;--y:58%;--w:90vw;--h:13vmax;--r:22deg;--d:52s;--mx:-6vw;--my:-4vh;--c1:#7A1630;--c2:#8A5A44;--delay:-10s"></i>
+<i class="ribbon" style="--x:-10%;--y:82%;--w:70vw;--h:10vmax;--r:-6deg;--d:48s;--mx:7vw;--my:-3vh;--c1:#6B4636;--c2:#9C2440;--delay:-20s"></i>
+<i class="mark" style="--x:9%;--y:12%;--s:34vmax;--k:.42;--t:3.2vmax;--r:-18deg;--d:30s;--mx:30px;--my:24px"></i>
+<i class="mark" style="--x:62%;--y:6%;--s:28vmax;--k:.55;--t:2.4vmax;--r:160deg;--d:36s;--mx:-36px;--my:30px;--c1:rgba(107,70,54,.75);--delay:-6s"></i>
+<i class="mark" style="--x:70%;--y:40%;--s:38vmax;--k:.38;--t:3.6vmax;--r:28deg;--d:40s;--mx:-30px;--my:-36px;--delay:-12s"></i>
+<i class="mark" style="--x:4%;--y:50%;--s:24vmax;--k:.6;--t:2vmax;--r:200deg;--d:28s;--mx:34px;--my:-20px;--c1:rgba(107,70,54,.7);--delay:-4s"></i>
+<i class="mark" style="--x:38%;--y:74%;--s:30vmax;--k:.45;--t:2.8vmax;--r:-150deg;--d:34s;--mx:-26px;--my:28px;--delay:-16s"></i>
+<i class="mark" style="--x:34%;--y:30%;--s:18vmax;--k:.5;--t:1.4vmax;--r:70deg;--d:26s;--mx:22px;--my:18px;--c1:rgba(201,154,120,.28);--delay:-9s"></i>
 </p>
 <section class="page">
 <a class="skip" href="#work">Skip to work</a>
