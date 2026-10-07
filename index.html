@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jade Penn · UX Design</title>
+<meta name="description" content="Portfolio of Jade Penn, UX designer and researcher. Case studies, research and working prototypes.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one centered column with a wide featured project. Blue and gold carry over from my earlier portfolio. */
+:root {
+  --bg: #F5F6F9; --surface: #FFFFFF; --raised: #EBEEF4; --line: #D6DCE7;
+  --fg: #13203A; --fg-2: #4B5875; --accent: #2E5A88; --accent-text: #2E5A88; --gold: #F2B705; --on-gold: #13203A;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1422; --surface: #151D30; --raised: #1D273E; --line: #2C3955;
+  --fg: #EDF1F8; --fg-2: #A9B4CB; --accent: #7FA8D6; --accent-text: #9CBDE2; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0E1422; --surface: #151D30; --raised: #1D273E; --line: #2C3955;
+  --fg: #EDF1F8; --fg-2: #A9B4CB; --accent: #7FA8D6; --accent-text: #9CBDE2; color-scheme: dark; }
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+a { color: var(--accent-text); }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; } }
+
+.skip { position: absolute; left: -999px; top: 8px; background: var(--gold); color: var(--on-gold); padding: 8px 12px; border-radius: 8px; font-weight: 700; z-index: 10; }
+.skip:focus { left: 16px; }
+
+header.top { padding-block: 22px; }
+header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.logo { font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.logo i { width: 14px; height: 14px; border-radius: 4px; background: var(--gold); display: inline-block; }
+header nav ul { list-style: none; padding: 0; display: flex; gap: 22px; font-weight: 600; font-size: 15px; }
+header nav a { color: var(--fg-2); text-decoration: none; }
+header nav a:hover { color: var(--fg); }
+
+.hero { padding-block: 72px 56px; display: grid; gap: 22px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 9vw, 104px); line-height: .95; letter-spacing: -.03em; }
+.hero p.intro { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; color: var(--fg-2); max-width: 36ch; }
+.hero p.intro b { color: var(--fg); font-weight: 600; }
+.now { display: flex; flex-wrap: wrap; gap: 10px; }
+.now li { list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 6px 14px; font-size: 14px; color: var(--fg-2); }
+.now { padding: 0; }
+
+section.block { padding-block: 56px; border-top: 1px solid var(--line); scroll-margin-top: 12px; }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.5vw, 44px); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 28px; }
+
+/* featured project */
+.feature { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); background: #0F1629; color: #EEF1F8; border-radius: 22px; overflow: hidden; }
+@media (max-width: 860px) { .feature { grid-template-columns: minmax(0, 1fr); } }
+.feature .media { position: relative; background: #0A0F1E; padding: 28px; display: grid; place-items: center; min-width: 0; }
+.feature .media img.screen { width: 100%; border-radius: 12px; box-shadow: 0 18px 40px rgba(0,0,0,.45); display: block; }
+.feature .media img.phone { position: absolute; right: 18px; bottom: -40px; width: 26%; border-radius: 18px; border: 4px solid #05080F; box-shadow: 0 16px 36px rgba(0,0,0,.55); }
+@media (max-width: 860px) { .feature .media img.phone { display: none; } }
+.feature .fcopy { padding: 34px 32px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.feature .eyebrow { color: #F2C94C; }
+.feature h3 { font-family: var(--display); font-weight: 800; font-size: 36px; line-height: 1; letter-spacing: -.02em; }
+.feature .q { font-size: 20px; color: #F2C94C; font-weight: 600; }
+.feature p { color: #C3CBDD; font-size: 16px; }
+.feature .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0; }
+.feature .stats li { list-style: none; border-top: 1px solid #33406A; padding-top: 8px; font-size: 13px; color: #AEB7CF; }
+.feature .stats b { display: block; font-family: var(--display); font-size: 24px; color: #EEF1F8; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; }
+.tags li { list-style: none; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; background: #1D2742; color: #C3CBDD; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
+.btn.primary { background: #F2C94C; color: #0B1020; }
+.btn.ghost { border: 1px solid #33406A; color: #EEF1F8; }
+.btn:hover { filter: brightness(1.06); }
+
+/* other projects */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+@media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
+.proj .art { aspect-ratio: 16 / 7; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 46px; letter-spacing: -.02em; }
+.art.cue { background: linear-gradient(135deg, #E7EEF8, #F9F2DC); color: #2E5A88; }
+.art.local { background: radial-gradient(circle at 30% 40%, #DDEEE4 0 18%, transparent 19%), radial-gradient(circle at 70% 60%, #F6E2D6 0 14%, transparent 15%), #EEF1F6; color: #13203A; }
+:root[data-theme="dark"] .art.cue, :root[data-theme="dark"] .art.local { filter: brightness(.82) saturate(.9); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .art.cue, :root:not([data-theme="light"]) .art.local { filter: brightness(.82) saturate(.9); } }
+.proj .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+.proj h3 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.1; }
+.proj p { color: var(--fg-2); font-size: 15.5px; }
+.status { align-self: flex-start; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; background: var(--raised); color: var(--fg-2); }
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; }
+@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+.about p { color: var(--fg-2); max-width: 60ch; }
+.about p + p { margin-top: 14px; }
+.about h3 { font-size: 14px; font-family: var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fg-2); font-weight: 500; margin-bottom: 10px; }
+.skills { padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.skills li { list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; font-size: 14px; }
+dl.edu { display: grid; gap: 4px; }
+dl.edu dt { font-weight: 700; }
+dl.edu dd { color: var(--fg-2); font-size: 15px; margin: 0; }
+
+/* contact */
+.contact { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.contact .email { font-family: var(--display); font-weight: 800; font-size: clamp(22px, 4vw, 34px); color: var(--fg); user-select: all; overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: 14px; font-weight: 700; background: var(--gold); color: var(--on-gold); border: 0; border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+.links { display: flex; gap: 18px; margin-top: 16px; padding: 0; font-weight: 600; }
+.links li { list-style: none; }
+
+footer.end { padding-block: 32px 48px; color: var(--fg-2); font-size: 14px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="top">
+  <section class="wrap">
+    <a class="logo" href="#top" aria-label="Jade Penn, home"><i aria-hidden="true"></i>Jade Penn</a>
+    <nav aria-label="Main">
+      <ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+    </nav>
+  </section>
+</header>
+
+<main id="top">
+  <section class="wrap hero" aria-labelledby="hero-name">
+    <p class="eyebrow">UX design and research</p>
+    <h1 id="hero-name">Jade Penn</h1>
+    <p class="intro">I start with what people actually say and do, then <b>design and prototype what the evidence points to</b>.</p>
+    <ul class="now" aria-label="Currently">
+      <li>B.S. User Experience Design, Western Governors University</li>
+      <li>Lead Early Learning Tutor</li>
+      <li>Open to UX internships</li>
+    </ul>
+  </section>
+
+  <section class="wrap block" id="work" aria-labelledby="work-h">
+    <h2 id="work-h">Selected work</h2>
+
+    <article class="feature" aria-labelledby="cw-title">
+      <figure class="media">
+        <img class="screen" src="assets/color-wave-screen.png" alt="Color Wave event screen: Now serving Blue, Orange and Pink, with Green up next and Red not yet called" width="1600" height="900">
+        <img class="phone" src="assets/color-wave-phone.png" alt="" width="780" height="1300">
+      </figure>
+      <section class="fcopy">
+        <p class="eyebrow">Case study · ShellHacks 2026 · Independent concept</p>
+        <h3 id="cw-title">Color Wave</h3>
+        <p class="q">Is my color up yet?</p>
+        <p>I surveyed 32 hackathon attendees about food waves and found the gap wasn't on Discord. It was in the room. So I designed one shared status for the phone and the screen above the food area, and built it as a working prototype.</p>
+        <ul class="stats">
+          <li><b>32</b>attendees surveyed</li>
+          <li><b>50%</b>of attendees off Discord struggled, vs 11% on it</li>
+          <li><b>3</b>connected screens</li>
+        </ul>
+        <ul class="tags" aria-label="Skills"><li>User research</li><li>Accessibility</li><li>Prototype</li><li>HTML/CSS/JS</li></ul>
+        <p class="actions">
+          <a class="btn primary" href="https://liyaay.github.io/color-wave/case-study/">Read the case study</a>
+          <a class="btn ghost" href="https://liyaay.github.io/color-wave/prototype/">Try the prototype</a>
+          <a class="btn ghost" href="https://liyaay.github.io/color-wave/docs/Color-Wave-Case-Study-Jade-Penn.pdf">PDF</a>
+        </p>
+      </section>
+    </article>
+
+    <section class="grid" aria-label="More projects">
+      <article class="proj" aria-labelledby="cue-title">
+        <p class="art cue" aria-hidden="true">Cue</p>
+        <section class="body">
+          <h3 id="cue-title">Cue</h3>
+          <p>An AI powered classroom time management assistant that works on top of the tools teachers already use, with the teacher always in control.</p>
+          <p class="status">Case study in progress</p>
+        </section>
+      </article>
+      <article class="proj" aria-labelledby="ll-title">
+        <p class="art local" aria-hidden="true">Local Lite</p>
+        <section class="body">
+          <h3 id="ll-title">Local Lite</h3>
+          <p>A ShellHacks team project: a map based app for discovering independent local businesses. I owned the UX/UI and a Flutter prototype.</p>
+          <p class="status">Case study in progress</p>
+        </section>
+      </article>
+    </section>
+  </section>
+
+  <section class="wrap block" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <section class="about">
+      <section>
+        <p>I'm a UX design student at Western Governors University and a Lead Early Learning Tutor. I like problems I've run into myself, because I can see them up close before I research them properly.</p>
+        <p>My projects follow the same path: notice a real problem, investigate it with real people, let the evidence change my mind, then design and build something that can be tested.</p>
+      </section>
+      <section>
+        <h3>What I do</h3>
+        <ul class="skills">
+          <li>User research</li><li>Surveys and synthesis</li><li>Information architecture</li><li>Wireframing</li><li>Visual and UI design</li><li>Accessibility</li><li>Prototyping</li><li>Figma</li><li>HTML, CSS, JavaScript</li>
+        </ul>
+        <h3>Education</h3>
+        <dl class="edu"><dt>Western Governors University</dt><dd>B.S. User Experience Design, in progress</dd></dl>
+      </section>
+    </section>
+  </section>
+
+  <section class="wrap block" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Let's talk</h2>
+    <p class="contact"><span class="email" id="email">jadepenndesign@gmail.com</span><button class="copy" type="button" id="copy-email">Copy email</button></p>
+    <ul class="links"><li><a href="https://github.com/Liyaay">GitHub</a></li></ul>
+  </section>
+</main>
+
+<footer class="end"><section class="wrap">© 2026 Jade Penn. Color Wave is an independent concept and is not affiliated with ShellHacks.</section></footer>
+
+<script>
+  var btn = document.getElementById("copy-email");
+  btn.addEventListener("click", function () {
+    var text = document.getElementById("email").textContent;
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Copy email"; }, 1600); }
+    try { navigator.clipboard.writeText(text).then(function () { done("Copied"); }, function () { done("Select and copy"); }); }
+    catch (e) { done("Select and copy"); }
+  });
+</script>
+</body>
+</html>
