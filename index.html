@@ -9,17 +9,20 @@
 <meta name="theme-color" content="#2B0A12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Layout: one centered column over a slow "lava leopard" background: burgundy glows, flowing ribbons and tapered brush
    marks that drift and change shape. Content sits on translucent glass panels; project screenshots get neutral dark frames so their own
    colors stay true. Single dark look on purpose. */
+/* Headings: TeX Gyre Heros Bold, a free Helvetica-style font (GUST Font License), bundled so every device matches */
+@font-face { font-family: "Heros"; src: url("assets/fonts/texgyreheros-bold.woff") format("woff");
+  font-weight: 600 900; font-style: normal; font-display: swap; }
 :root {
   --wine-0: #1A0509; --wine-1: #2B0A12; --wine-2: #4A0F1F; --burgundy: #7A1630; --ruby: #9C2440;
   --choc: #2E1A12; --mocha: #6B4636; --latte: #C99A78; --caramel: #E0B28C;
   --cream: #F7EAE2; --cream-2: #DCC3B7; --line: rgba(247, 234, 226, .14);
   --glass: rgba(43, 10, 18, .48); --glass-2: rgba(74, 15, 31, .38); --frame: #0E0A0C;
-  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --display: "Heros", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
@@ -85,7 +88,7 @@ header nav a:hover { color: var(--cream); }
 
 .hero { padding-block: 84px 64px; display: grid; gap: 22px; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--latte); }
-h1 { font-family: var(--display); font-weight: 800; font-size: clamp(52px, 10vw, 116px); line-height: .92; letter-spacing: -.035em;
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(52px, 10vw, 116px); line-height: .92; letter-spacing: -.045em;
   background: linear-gradient(100deg, var(--cream) 0%, var(--cream) 45%, var(--caramel) 75%, var(--latte) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero p.intro { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; color: var(--cream-2); max-width: 36ch; }
 .hero p.intro b { color: var(--cream); font-weight: 600; }
@@ -94,7 +97,7 @@ h1 { font-family: var(--display); font-weight: 800; font-size: clamp(52px, 10vw,
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 
 section.block { padding-block: 56px; scroll-margin-top: 12px; }
-h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.5vw, 46px); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 26px; }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.5vw, 46px); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 26px; }
 h2::after { content: ""; display: block; width: 56px; height: 6px; margin-top: 14px; border-radius: 99px; background: linear-gradient(90deg, var(--ruby), var(--mocha), var(--latte)); }
 
 /* featured project: neutral frame keeps the project's own colors true */
@@ -125,7 +128,7 @@ h2::after { content: ""; display: block; width: 56px; height: 6px; margin-top: 1
 .proj { overflow: hidden; display: flex; flex-direction: column; }
 .proj .art { aspect-ratio: 16 / 7; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 46px; letter-spacing: -.02em; color: var(--cream); position: relative; overflow: hidden; }
 .art.cue { background: radial-gradient(60% 90% at 20% 30%, rgba(201, 154, 120, .55), transparent 70%), radial-gradient(50% 80% at 85% 80%, rgba(122, 22, 48, .7), transparent 70%), var(--choc); }
-.art.local { background: radial-gradient(closest-side at 30% 45%, rgba(156, 36, 64, .6) 0 45%, rgba(46, 26, 18, .9) 50% 62%, transparent 66%), radial-gradient(closest-side at 72% 60%, rgba(156, 36, 64, .5) 0 40%, rgba(46, 26, 18, .9) 46% 60%, transparent 64%), linear-gradient(135deg, var(--mocha), var(--wine-2)); }
+.art.local { background: linear-gradient(160deg, transparent 18%, rgba(156, 36, 64, .55) 38%, transparent 58%), linear-gradient(200deg, transparent 40%, rgba(107, 70, 54, .6) 62%, transparent 82%), radial-gradient(70% 90% at 85% 10%, rgba(122, 22, 48, .7), transparent 70%), var(--wine-2); }
 .proj .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; }
 .proj h3 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.1; }
 .proj p { color: var(--cream-2); font-size: 15.5px; }
